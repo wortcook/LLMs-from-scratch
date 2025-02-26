@@ -9,9 +9,10 @@ def split_json(file_path):
     
     # Extract header and data array
 
-    source_lang = data.get('source_language', {})
-    target_lang = data.get('target_language', {})
-    data_array = data.get('data', [])
+    # source_lang = data.get('source_language', {})
+    # target_lang = data.get('target_language', {})
+    # data_array = data.get(', [])
+    data_array = data
     
     # Shuffle the data array
     random.shuffle(data_array)
@@ -22,8 +23,8 @@ def split_json(file_path):
     testing_data = data_array[split_index:]
     
     # Create the training and testing JSON objects
-    training_json = {'source_language': source_lang, 'target_lang':target_lang, 'data': training_data}
-    testing_json  = {'source_language': source_lang, 'target_lang':target_lang, 'data': testing_data}
+    # training_json = {'source_language': source_lang, 'target_lang':target_lang, 'data': training_data}
+    # testing_json  = {'source_language': source_lang, 'target_lang':target_lang, 'data': testing_data}
     
     # Generate the output file names
     base_name, ext = os.path.splitext(file_path)
@@ -32,11 +33,13 @@ def split_json(file_path):
     
     # Write the training JSON to a file
     with open(training_file, 'w') as file:
-        json.dump(training_json, file, indent=4)
+        # json.dump(training_json, file, indent=4)
+        json.dump(training_data, file, indent=4)
     
     # Write the testing JSON to a file
     with open(testing_file, 'w') as file:
-        json.dump(testing_json, file, indent=4)
+        # json.dump(testing_json, file, indent=4)
+        json.dump(testing_data, file, indent=4)
 
 # Example usage
 if __name__ == "__main__":

@@ -12,10 +12,10 @@ def convert_tsv_to_json(tsv_file_path, target_language, source_language):
     
     json_file_path = os.path.splitext(tsv_file_path)[0] + '.json'
 
-    file_master_data = {
-        'source_language': source_language,
-        'target_language': target_language
-    }
+    # file_master_data = {
+    #     'source_language': source_language,
+    #     'target_language': target_language
+    # }
     
     with open(tsv_file_path, 'r', newline='') as tsv_file:
         #the tsv file does not have headers
@@ -28,11 +28,12 @@ def convert_tsv_to_json(tsv_file_path, target_language, source_language):
                 'target': row[1]
             })
 
-    file_master_data['data'] = data
+    # file_master_data['data'] = data
         
     with open(json_file_path, 'w') as json_file:
         #We only are interested in the first two columns, the third one is not needed
-        json.dump(file_master_data, json_file, indent=4)
+        # json.dump(file_master_data, json_file, indent=4)
+        json.dump(data, json_file, indent=4)
     
         
     
